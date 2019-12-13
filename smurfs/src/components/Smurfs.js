@@ -7,13 +7,13 @@ export default function Smurfs() {
 
   useEffect(() => {
       getSmurfs()
-  }, [])
+  }, [getSmurfs])
 
   return (
     <div>
       {smurfs.map(smurf => {
         return (
-          <div>
+          <div key={smurf.id}>
             <p>Name: {smurf.name}</p>
             <p>Age: {smurf.age}</p>
             <p>Height: {smurf.height}</p>
