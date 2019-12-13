@@ -1,34 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import smurfsFormContext from "../contexts/smurfsFormContext";
 
 export default function SmurfsForm() {
+  const { addSmurf, inputHandler, smurfsForm } = useContext(smurfsFormContext);
+  const submitHandler = event => {
+    event.preventDefault();
+    addSmurf();
+  };
+
   return (
     <form>
-      <input 
-        name="name" 
-        type="text" 
-        // value={} 
-        placeholder="Name" 
-        // onChange={}
+      <input
+        name="name"
+        type="text"
+        value={smurfsForm.name}
+        placeholder="Name"
+        onChange={inputHandler}
       />
-      <input 
-        name="age" 
-        type="number" 
-        // value={} 
-        placeholder="Age" 
-        // onChange={}
+      <input
+        name="age"
+        type="number"
+        value={smurfsForm.age}
+        placeholder="Age"
+        onChange={inputHandler}
       />
       <input
         name="height"
         type="text"
-        // value={}
+        value={smurfsForm.height}
         placeholder="Height"
-        // onChange={}
+        onChange={inputHandler}
       />
 
-      <button 
-        // onSubmit={}
-      >Submit
-      </button>
+      <button onClick={submitHandler}>Submit</button>
     </form>
   );
 }
