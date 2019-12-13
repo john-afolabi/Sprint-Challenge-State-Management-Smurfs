@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import smurfsContext from "../contexts/smurfsContext";
+import smurfsFormContext from "../contexts/smurfsFormContext";
+import axios from "axios";
+
+const initialState = {
+  smurfs: [],
+  formValues: {
+    name: "",
+    age: "",
+    height: ""
+  }
+};
 
 function App() {
+  const [smurfs, setSmurfs] = useState(initialState.smurfs);
+  const [smurfsForm, setSmurfsForm] = useState(initialState.formValues);
+
+  const getSmurfs = () => {
+    axios
+      .get("http://localhost:3333/smurfs")
+      .then(res => {
+        setSmurfs(res.data);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="App">
       <h1>SMURFS! 2.0 W/ Redux</h1>
